@@ -3,21 +3,29 @@
 from github import Github
 import requests
 
-with open('.github_token', 'r') as f:
+import argparse
+import os
+
+user_home = os.path.expanduser('~')
+with open(os.path.join(user_home, '.github_token'), 'r') as f:
         token = f.read()
 
 def main():
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--output', dest='output', default='.')
+        args = parser.parse_args()
+        
         g = Github(token)
         reef_pi = g.get_organization('reef-pi').get_repo('reef-pi')
         releases = reef_pi.get_releases()
         for release in releases:
                 for asset in release.get_assets():
                         print asset.name
-                        fetch_asset(asset)
+                        fetch_asset(asset, dest=args.output)
         
 
-def fetch_asset(asset):
-        with open('tmp/{}'.format(asset.name), 'w') as f:
+def fetch_asset(asset, dest=None):
+        with open('{}/{}'.format(dest, asset.name), 'w') as f:
                 r = requests.get(asset.url,
                                  allow_redirects=True,
                                  headers={
