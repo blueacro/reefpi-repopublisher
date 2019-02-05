@@ -25,6 +25,10 @@ def main():
         
 
 def fetch_asset(asset, dest=None):
+        fname = '{}/{}'.format(dest, asset.name)
+        if os.path.isfile(fname):
+                print("file exists {}".format(fname))
+                return
         with open('{}/{}'.format(dest, asset.name), 'w') as f:
                 r = requests.get(asset.url,
                                  allow_redirects=True,

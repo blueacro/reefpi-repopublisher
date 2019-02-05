@@ -2,7 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*~
+build/
+repo.key
+venv/
+packages/
 # C extensions
 *.so
 
