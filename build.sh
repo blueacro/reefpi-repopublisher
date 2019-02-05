@@ -23,10 +23,10 @@ cp -r repos $BASE
 reprepro ${REPREPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb stretch packages/*pi0.deb
 reprepro ${REPROPRO_PTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb stretch packages/*pi3.deb
 
-aws s3 sync --acl=public-read build/repos ${S3_BUCKET}/repos
+venv/bin/aws s3 sync --acl=public-read build/repos ${S3_BUCKET}/repos
 
 gpg2 --export --armor ${EXPORT_KEY} > repo.key
-aws s3 cp --acl=public-read repo.key ${S3_BUCKET}/repo.key
+venv/bin/aws s3 cp --acl=public-read repo.key ${S3_BUCKET}/repo.key
 rm -f repo.key
 
-aws s3 cp --acl=public-read setup.sh ${S3_BUCKET}/setup.sh
+venv/bin/aws s3 cp --acl=public-read setup.sh ${S3_BUCKET}/setup.sh
