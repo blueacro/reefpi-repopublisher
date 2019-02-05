@@ -1,7 +1,0 @@
-Origin: reefpi0
-Label: reefpi0
-Codename: stretch
-Architectures: armel
-Components: main
-Description: Apt repository for Reef-Pi on Raspberri Pi Zero
-SignWith: <key-id>

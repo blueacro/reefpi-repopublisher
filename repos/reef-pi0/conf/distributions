@@ -1,0 +1,7 @@
+Origin: reef-pi0
+Label: reef-pi0
+Codename: stretch
+Architectures: armhf
+Components: main
+Description: Apt repository for Reef-Pi on Raspberri Pi Zero
+SignWith: A6A0D5E1B393B1AB1DB4832F9A04AE4AAF5EA861
