@@ -1,6 +1,9 @@
 #!/bin/bash
 
-set -e
+set -eu
+set -o pipefail
+
+source /etc/os-release
 
 # This script will setup an Apt repository for Reef-Pi in one command
 
@@ -16,7 +19,7 @@ else
 fi
 
 echo -n "Adding repository for ${REPO_SUFFIX}"
-echo "deb http://repo.blueacro.com/repos/reef-${REPO_SUFFIX} stretch main" | sudo tee /etc/apt/sources.list.d/reefpi.list > /dev/null
+echo "deb http://repo.blueacro.com/repos/reef-${REPO_SUFFIX} ${VERSION_CODENAME} main" | sudo tee /etc/apt/sources.list.d/reefpi.list > /dev/null
 echo " done."
 
 echo -n "Importing repository key..."
