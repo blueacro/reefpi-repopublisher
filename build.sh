@@ -20,10 +20,13 @@ BASE=$PWD/build
 mkdir -p $BASE
 cp -r repos $BASE/repos
 
-reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb stretch packages/*pi0.deb
-reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb buster  packages/*pi0.deb
-reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb stretch packages/*pi3.deb
-reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb buster  packages/*pi3.deb
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb stretch   packages/*pi0.deb
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb buster    packages/*pi0.deb
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi0 includedeb bullseye  packages/*pi0.deb
+
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb stretch   packages/*pi3.deb
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb buster    packages/*pi3.deb
+reprepro ${REPROPRO_OPTIONS} --basedir ${BASE}/repos/reef-pi3 includedeb bullseye  packages/*pi3.deb
 
 venv/bin/aws --profile=coralworld s3 sync --acl=public-read build/repos ${S3_BUCKET}/repos
 
